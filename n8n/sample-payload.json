@@ -1,0 +1,14 @@
+{
+  "title": "Diljit Dosanjh adds a Chandigarh date to the Aura India tour",
+  "description": "The seventh city is confirmed. Here's the date, venue and how tickets work.",
+  "section": "music",
+  "tags": ["Diljit Dosanjh", "Aura tour", "concerts in India"],
+  "image_url": "https://example.com/gist-post-image.jpg",
+  "image_alt": "GIST post graphic announcing Diljit Dosanjh's Chandigarh show",
+  "image_credit": "GIST",
+  "featured": false,
+  "source": "instagram",
+  "source_url": "https://www.instagram.com/p/XXXXXXXX/",
+  "sources": [{ "name": "Official announcement", "url": "https://example.com/announcement" }],
+  "body": "Opening paragraph in GIST voice...\n\n## Second heading\n\nMore paragraphs. Markdown is supported: **bold**, [links](https://example.com), lists."
+}

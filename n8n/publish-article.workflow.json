@@ -1,0 +1,301 @@
+{
+ "name": "GIST — Publish article to gistmedia.org",
+ "nodes": [
+  {
+   "parameters": {
+    "httpMethod": "POST",
+    "path": "gist-publish",
+    "authentication": "headerAuth",
+    "responseMode": "lastNode",
+    "options": {}
+   },
+   "id": "602be72a-9e9c-4672-b78b-7982e639ab41",
+   "name": "Publish webhook",
+   "type": "n8n-nodes-base.webhook",
+   "typeVersion": 2,
+   "position": [
+    0,
+    300
+   ],
+   "webhookId": "2e592f20-5667-4c33-94eb-16cc83c6afd2",
+   "credentials": {
+    "httpHeaderAuth": {
+     "id": "",
+     "name": "GIST publish key"
+    }
+   }
+  },
+  {
+   "parameters": {
+    "jsCode": "// ===== EDIT THESE TWO LINES ONCE =====\nconst REPO = 'gistmediawebsite/gist-site';\nconst SITE = 'https://www.gistmedia.org';\n// =====================================\nconst b = $json.body || $json;\nconst need = ['title', 'description', 'body', 'section', 'image_url'];\nconst missing = need.filter(k => !b[k]);\nif (missing.length) throw new Error('Missing fields: ' + missing.join(', '));\nconst sections = ['celebrity', 'music', 'movies', 'sport', 'events', 'luxury'];\nif (!sections.includes(b.section)) throw new Error('section must be one of ' + sections.join(', '));\nconst slugify = s => String(s).toLowerCase().replace(/&/g, 'and').replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '').slice(0, 80).replace(/-$/, '');\nconst slug = b.slug ? slugify(b.slug) : slugify(b.title);\nconst now = new Date().toISOString();\nconst ext = (b.image_url.split('?')[0].match(/\\.(jpe?g|png|webp)$/i) || [, 'jpg'])[1].toLowerCase();\nconst imagePath = `/img/news/${slug}-${Date.now().toString(36)}.${ext}`;\nconst q = s => JSON.stringify(String(s ?? ''));   // YAML-safe double-quoted string\nconst list = a => (Array.isArray(a) && a.length) ? '\\n' + a.map(t => `  - ${q(t)}`).join('\\n') : ' []';\nconst sources = Array.isArray(b.sources) && b.sources.length\n  ? '\\n' + b.sources.map(s => `  - name: ${q(s.name)}\\n    url: ${q(s.url)}`).join('\\n') : ' []';\nconst fm = [\n  '---',\n  `title: ${q(b.title)}`,\n  `description: ${q(b.description)}`,\n  `date: ${b.date || now}`,\n  `updated: ${now}`,\n  `section: ${b.section}`,\n  `tags:${list(b.tags)}`,\n  `image: ${imagePath}`,\n  `image_alt: ${q(b.image_alt || b.title)}`,\n  `image_credit: ${q(b.image_credit || 'GIST')}`,\n  `author: ${q(b.author || 'GIST Desk')}`,\n  `featured: ${b.featured ? 'true' : 'false'}`,\n  `draft: ${b.draft ? 'true' : 'false'}`,\n  `sponsored: ${b.sponsored ? 'true' : 'false'}`,\n  b.sponsor ? `sponsor: ${q(b.sponsor)}` : null,\n  b.disclosure ? `disclosure: ${q(b.disclosure)}` : null,\n  `source: ${q(b.source || 'n8n')}`,\n  b.source_url ? `source_url: ${q(b.source_url)}` : null,\n  `sources:${sources}`,\n  '---', '', String(b.body).trim(), ''\n].filter(x => x !== null).join('\\n');\nreturn [{ json: {\n  repo: REPO, slug, url: `${SITE}/news/${slug}/`,\n  mdPath: `content/articles/${slug}.md`,\n  mdB64: Buffer.from(fm, 'utf8').toString('base64'),\n  imagePath, imageRepoPath: 'static' + imagePath, imageUrl: b.image_url,\n  commitMsg: `Publish: ${b.title}`.slice(0, 120)\n} }];"
+   },
+   "id": "0f175497-75ac-4c86-84c9-3f3c5431e9cf",
+   "name": "Prepare article",
+   "type": "n8n-nodes-base.code",
+   "typeVersion": 2,
+   "position": [
+    220,
+    300
+   ]
+  },
+  {
+   "parameters": {
+    "url": "={{ $json.imageUrl }}",
+    "options": {
+     "response": {
+      "response": {
+       "responseFormat": "file"
+      }
+     }
+    }
+   },
+   "id": "e7ae6322-6c94-4095-b456-a6b82b5f74d3",
+   "name": "Download image",
+   "type": "n8n-nodes-base.httpRequest",
+   "typeVersion": 4.2,
+   "position": [
+    440,
+    300
+   ]
+  },
+  {
+   "parameters": {
+    "jsCode": "const buf = await this.helpers.getBinaryDataBuffer(0, 'data');\nif (buf.length > 4.5 * 1024 * 1024) throw new Error('Image larger than 4.5 MB — resize before publishing');\nreturn [{ json: { imgB64: buf.toString('base64') } }];"
+   },
+   "id": "a3af8ee6-e3f9-4303-a5da-1059f52c590b",
+   "name": "Image to base64",
+   "type": "n8n-nodes-base.code",
+   "typeVersion": 2,
+   "position": [
+    660,
+    300
+   ]
+  },
+  {
+   "parameters": {
+    "method": "PUT",
+    "url": "=https://api.github.com/repos/{{ $('Prepare article').item.json.repo }}/contents/{{ $('Prepare article').item.json.imageRepoPath }}",
+    "authentication": "predefinedCredentialType",
+    "nodeCredentialType": "githubApi",
+    "sendHeaders": true,
+    "headerParameters": {
+     "parameters": [
+      {
+       "name": "Accept",
+       "value": "application/vnd.github+json"
+      }
+     ]
+    },
+    "options": {},
+    "sendBody": true,
+    "specifyBody": "json",
+    "jsonBody": "={{ JSON.stringify({ message: 'Image: ' + $('Prepare article').item.json.slug, content: $json.imgB64, branch: 'main' }) }}"
+   },
+   "id": "9d78d8d6-9e79-4586-ac98-aef93bbe1de8",
+   "name": "Upload image to GitHub",
+   "type": "n8n-nodes-base.httpRequest",
+   "typeVersion": 4.2,
+   "position": [
+    880,
+    300
+   ],
+   "credentials": {
+    "githubApi": {
+     "id": "",
+     "name": "GitHub account"
+    }
+   }
+  },
+  {
+   "parameters": {
+    "method": "GET",
+    "url": "=https://api.github.com/repos/{{ $('Prepare article').item.json.repo }}/contents/{{ $('Prepare article').item.json.mdPath }}?ref=main",
+    "authentication": "predefinedCredentialType",
+    "nodeCredentialType": "githubApi",
+    "sendHeaders": true,
+    "headerParameters": {
+     "parameters": [
+      {
+       "name": "Accept",
+       "value": "application/vnd.github+json"
+      }
+     ]
+    },
+    "options": {
+     "response": {
+      "response": {
+       "neverError": true
+      }
+     }
+    }
+   },
+   "id": "c94fb174-6a40-4c22-8158-7fecaa8137b8",
+   "name": "Check if article exists",
+   "type": "n8n-nodes-base.httpRequest",
+   "typeVersion": 4.2,
+   "position": [
+    1100,
+    300
+   ],
+   "credentials": {
+    "githubApi": {
+     "id": "",
+     "name": "GitHub account"
+    }
+   }
+  },
+  {
+   "parameters": {
+    "method": "PUT",
+    "url": "=https://api.github.com/repos/{{ $('Prepare article').item.json.repo }}/contents/{{ $('Prepare article').item.json.mdPath }}",
+    "authentication": "predefinedCredentialType",
+    "nodeCredentialType": "githubApi",
+    "sendHeaders": true,
+    "headerParameters": {
+     "parameters": [
+      {
+       "name": "Accept",
+       "value": "application/vnd.github+json"
+      }
+     ]
+    },
+    "options": {},
+    "sendBody": true,
+    "specifyBody": "json",
+    "jsonBody": "={{ JSON.stringify(Object.assign({ message: $('Prepare article').item.json.commitMsg, content: $('Prepare article').item.json.mdB64, branch: 'main' }, $json.sha ? { sha: $json.sha } : {})) }}"
+   },
+   "id": "4e8929d4-ecdd-4b13-bbd8-fd42d15610d6",
+   "name": "Write article to GitHub",
+   "type": "n8n-nodes-base.httpRequest",
+   "typeVersion": 4.2,
+   "position": [
+    1320,
+    300
+   ],
+   "credentials": {
+    "githubApi": {
+     "id": "",
+     "name": "GitHub account"
+    }
+   }
+  },
+  {
+   "parameters": {
+    "assignments": {
+     "assignments": [
+      {
+       "id": "dcd69b34-3532-4a78-a37f-9eb9fb4dccb8",
+       "name": "ok",
+       "value": true,
+       "type": "boolean"
+      },
+      {
+       "id": "ad0ed48d-59f1-44c6-aa0e-109e3e78f925",
+       "name": "url",
+       "value": "={{ $('Prepare article').item.json.url }}",
+       "type": "string"
+      },
+      {
+       "id": "4834b1e0-b378-41e9-96e4-dfea17925c8d",
+       "name": "live_in",
+       "value": "about 1–2 minutes",
+       "type": "string"
+      }
+     ]
+    },
+    "options": {}
+   },
+   "id": "70211711-0ea5-4ab5-a443-d96ceb7e4b4f",
+   "name": "Reply with URL",
+   "type": "n8n-nodes-base.set",
+   "typeVersion": 3.4,
+   "position": [
+    1540,
+    300
+   ]
+  }
+ ],
+ "connections": {
+  "Publish webhook": {
+   "main": [
+    [
+     {
+      "node": "Prepare article",
+      "type": "main",
+      "index": 0
+     }
+    ]
+   ]
+  },
+  "Prepare article": {
+   "main": [
+    [
+     {
+      "node": "Download image",
+      "type": "main",
+      "index": 0
+     }
+    ]
+   ]
+  },
+  "Download image": {
+   "main": [
+    [
+     {
+      "node": "Image to base64",
+      "type": "main",
+      "index": 0
+     }
+    ]
+   ]
+  },
+  "Image to base64": {
+   "main": [
+    [
+     {
+      "node": "Upload image to GitHub",
+      "type": "main",
+      "index": 0
+     }
+    ]
+   ]
+  },
+  "Upload image to GitHub": {
+   "main": [
+    [
+     {
+      "node": "Check if article exists",
+      "type": "main",
+      "index": 0
+     }
+    ]
+   ]
+  },
+  "Check if article exists": {
+   "main": [
+    [
+     {
+      "node": "Write article to GitHub",
+      "type": "main",
+      "index": 0
+     }
+    ]
+   ]
+  },
+  "Write article to GitHub": {
+   "main": [
+    [
+     {
+      "node": "Reply with URL",
+      "type": "main",
+      "index": 0
+     }
+    ]
+   ]
+  }
+ },
+ "settings": {
+  "executionOrder": "v1"
+ },
+ "pinData": {}
+}

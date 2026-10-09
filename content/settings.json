@@ -1,0 +1,45 @@
+{
+ "siteName": "GIST MEDIA",
+ "siteUrl": "https://www.gistmedia.org",
+ "tagline": "Everyone's talking. We started it.",
+ "description": "What's happening in entertainment, celebrity, live music and the world's biggest events — plus artist bookings and private access to marquee experiences, from India.",
+ "email": "gaurav@gistmedia.org",
+ "whatsapp": "919599706564",
+ "whatsappDisplay": "+91 95997 06564",
+ "instagram": "https://www.instagram.com/gistmediaupdates/",
+ "instagramHandle": "@gistmediaupdates",
+ "linkedin": "https://www.linkedin.com/company/gist-media/",
+ "facebook": "https://www.facebook.com/profile.php?id=61595198635276",
+ "ga4Id": "G-VLCXZXF7C1",
+ "googleSiteVerification": "",
+ "formEndpoint": "https://formsubmit.co/ajax/gaurav@gistmedia.org",
+ "publisher": "Vatsalaya Rasa Private Limited",
+ "grievanceOfficer": "Pallavi Chhabra",
+ "defaultAuthor": "GIST Desk",
+ "sections": [
+  {
+   "id": "celebrity",
+   "label": "Celebrity"
+  },
+  {
+   "id": "music",
+   "label": "Music & concerts"
+  },
+  {
+   "id": "movies",
+   "label": "Movies & OTT"
+  },
+  {
+   "id": "sport",
+   "label": "Sport"
+  },
+  {
+   "id": "events",
+   "label": "Events & festivals"
+  },
+  {
+   "id": "luxury",
+   "label": "Luxury & travel"
+  }
+ ]
+}

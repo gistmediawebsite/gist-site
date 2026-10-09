@@ -1,0 +1,39 @@
+[
+ {
+  "path": "/about/",
+  "title": "About GIST",
+  "intro": "Everyone's talking. We started it.",
+  "body": "GIST is an entertainment and culture brand for India's most plugged-in audience. We cover what everyone's talking about in celebrity, music, movies, sport and the world's biggest events, from India and around the world.\n\nGIST has three parts:\n\n- **What's Happening** — our newsroom on this site, Instagram ([{{instagramHandle}}]({{instagram}})) and LinkedIn.\n- **Artist Booking (GIST Talent)** — live artists for weddings, private celebrations, corporate stages and brands.\n- **Experiences (GIST Access)** — private access to marquee events like Formula 1, Wimbledon and the world's biggest tours, with stays, travel and concierge.\n\nGIST is operated by {{publisher}}.\n\n## Contact\n\nEmail [{{email}}](mailto:{{email}}) or WhatsApp {{whatsappDisplay}}."
+ },
+ {
+  "path": "/contact/",
+  "title": "Contact",
+  "intro": "Story tips, corrections, bookings and partnerships. One inbox, read every day.",
+  "form": true,
+  "body": "**Email:** [{{email}}](mailto:{{email}})\n\n**WhatsApp:** {{whatsappDisplay}}\n\n**Instagram:** [{{instagramHandle}}]({{instagram}})\n\nFor a correction, include the link to the story and what needs fixing. For a booking, include the date, city and number of guests."
+ },
+ {
+  "path": "/editorial-policy/",
+  "title": "Editorial policy",
+  "intro": "How we report, check and correct what we publish.",
+  "body": "## What we cover\n\nCelebrity, music, movies, sport, events and luxury, for an Indian audience with a global outlook. We don't publish stories about private individuals who aren't public figures, and we don't publish stories that identify minors.\n\n## How we check\n\nEvery story is based on sources we name at the end of the article: official statements, the event organisers, trade data, and reporting by established publications. When a claim comes from a single source or hasn't been confirmed, we say so in the story. Figures such as box-office numbers are labelled as estimates.\n\n## How stories are made\n\nWe use software, including AI tools, to monitor news, research and draft. Every story is reviewed and approved by a GIST editor before it is published, and the editor is responsible for it.\n\n## Paid content\n\nPaid partnerships are labelled **Paid partnership** at the top of the story and on every card that links to it, in line with ASCI guidelines. Where GIST has a commercial interest in a subject — for example an artist available through GIST Talent, or an event offered through GIST Access — we say so in the story.\n\n<h2 id=\"corrections\">Corrections</h2>\n\nIf we get something wrong, we fix it and add a note to the story saying what changed and when. Send corrections to [{{email}}](mailto:{{email}}) with the link to the story.\n\n## Takedown requests\n\nIf you believe a story infringes your rights, write to our Grievance Officer, {{grievanceOfficer}}, at [{{email}}](mailto:{{email}}). See [Grievance redressal](/grievance/)."
+ },
+ {
+  "path": "/grievance/",
+  "title": "Grievance redressal",
+  "intro": "How to raise a complaint about content published by GIST.",
+  "body": "GIST publishes news and current-affairs content. If you have a complaint about something we have published, contact our Grievance Officer.\n\n**Grievance Officer:** {{grievanceOfficer}}  \nEmail: [{{email}}](mailto:{{email}}) (subject line: \"Grievance\")\n\nPlease include:\n\n- the link to the content,\n- what you believe is wrong or harmful, and why,\n- your name and how we can reach you.\n\nWe acknowledge complaints within 24 hours and aim to resolve them within 15 days.\n\nGIST is operated by {{publisher}}."
+ },
+ {
+  "path": "/privacy/",
+  "title": "Privacy policy",
+  "intro": "What we collect, why, and what you can ask us to do with it.",
+  "body": "This policy explains how {{publisher}} (\"GIST\", \"we\") handles personal data collected through gistmedia.org.\n\n## What we collect\n\n- **Enquiry and contact forms:** your name, email, phone number and the details you choose to share about your event or request.\n- **WhatsApp:** if you message us, your number and the messages you send.\n- **Analytics:** pages visited, device and approximate location, collected by Google Analytics using cookies.\n\n## Why we use it\n\nTo reply to your enquiry, prepare quotes, arrange bookings you ask for, and understand which stories and pages are useful. We do not sell your data.\n\n## Who processes it for us\n\nOur hosting provider (Cloudflare), our form-delivery service (FormSubmit), Google (Analytics and email) and Meta (WhatsApp). Data may be processed outside India by these providers.\n\n## How long we keep it\n\nEnquiry details are kept for as long as needed to respond and for our records of bookings, and no longer than required by law.\n\n## Your rights\n\nYou can ask us to access, correct or erase your personal data, or withdraw consent for future use, by writing to [{{email}}](mailto:{{email}}). You can also raise a grievance with us, and you have the right to approach the Data Protection Board of India.\n\n## Cookies\n\nAnalytics cookies can be blocked in your browser settings. The site works without them.\n\n## Changes\n\nWe will update this page if our practices change."
+ },
+ {
+  "path": "/terms/",
+  "title": "Terms of use",
+  "intro": "The rules for using gistmedia.org.",
+  "body": "## Content\n\nStories on this site are for information. We work to keep them accurate, but details such as dates, line-ups and prices are set by organisers and can change. Check with the official source before you travel or buy.\n\n## Enquiries are not bookings\n\nSubmitting a form or messaging us does not create a booking or a contract. Artist bookings are confirmed only by a signed agreement and advance. Experiences are confirmed only after availability, inclusions and price are agreed in writing and payment is made.\n\n## Prices\n\nPrices shown are indicative and subject to availability at the time of booking. Unless stated, they exclude GST, TCS where applicable, flights, hotels and transfers.\n\n## No affiliation\n\nGIST is independent. Unless we say otherwise, GIST is not affiliated with, or endorsed by, the artists, events, teams, leagues or organisers named on this site. Names are used to identify them.\n\n## Intellectual property\n\nThe GIST name, logo, design and original text belong to GIST. Photographs belong to their credited owners.\n\n## Liability\n\nTo the extent the law allows, GIST is not liable for losses arising from reliance on information on this site or from changes made by third-party organisers.\n\n## Law\n\nThese terms are governed by the laws of India. Courts at New Delhi have jurisdiction."
+ }
+]

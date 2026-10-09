@@ -1,0 +1,594 @@
+{
+ "lanes": [
+  {
+   "id": "composer-led-concerts",
+   "label": "Composer-led concerts"
+  },
+  {
+   "id": "bollywood-headliners",
+   "label": "Bollywood headliners"
+  },
+  {
+   "id": "sufi-folk-qawwali",
+   "label": "Sufi, folk & qawwali"
+  },
+  {
+   "id": "bollywood-voices",
+   "label": "Bollywood voices"
+  },
+  {
+   "id": "punjabi-and-party",
+   "label": "Punjabi & party"
+  },
+  {
+   "id": "bands-indie-rising",
+   "label": "Bands, indie & rising"
+  }
+ ],
+ "moments": [
+  {
+   "label": "Bridal entry & pheras",
+   "artists": [
+    "Jasleen Royal",
+    "Rishab Rikhiram Sharma",
+    "Harshdeep Kaur",
+    "Akhil Sachdeva"
+   ]
+  },
+  {
+   "label": "Sangeet & mehendi",
+   "artists": [
+    "Kanika Kapoor",
+    "Meet Bros",
+    "Aastha Gill",
+    "Sukhbir",
+    "Navraj Hans",
+    "Akriti Kakar"
+   ]
+  },
+  {
+   "label": "Sufi night & mehfil",
+   "artists": [
+    "Kailash Kher",
+    "Bismil",
+    "Sagar Bhatia",
+    "Rishab Rikhiram Sharma",
+    "Harshdeep Kaur"
+   ]
+  },
+  {
+   "label": "Reception headline",
+   "artists": [
+    "Jubin Nautiyal",
+    "Armaan Malik",
+    "Shaan",
+    "Sanam",
+    "Stebin Ben",
+    "Jonita Gandhi"
+   ]
+  },
+  {
+   "label": "Corporate gala & awards",
+   "artists": [
+    "Pritam",
+    "Vishal–Shekhar",
+    "Shankar Mahadevan",
+    "Salim–Sulaiman",
+    "Sachin–Jigar",
+    "Sukhwinder Singh"
+   ]
+  },
+  {
+   "label": "After-party",
+   "artists": [
+    "Manj Musik",
+    "Gurdeep Mehndi",
+    "Sukhbir",
+    "Nakash Aziz",
+    "Sukriti & Prakriti Kakar"
+   ]
+  },
+  {
+   "label": "Private dinner & milestones",
+   "artists": [
+    "Rahul Vaidya",
+    "Siddharth Mahadevan",
+    "Nikhita Gandhi",
+    "Amit Mishra",
+    "Shalmali Kholgade",
+    "Suryaveer"
+   ]
+  }
+ ],
+ "occasions": [
+  [
+   "Weddings",
+   "Sangeet, mehendi, bridal entry, reception and after-party — in India and at destination weddings."
+  ],
+  [
+   "Private",
+   "Milestone birthdays, anniversaries and intimate house mehfils for families and HNIs."
+  ],
+  [
+   "Corporate",
+   "Annual days, dealer meets, launches, offsites and award nights."
+  ],
+  [
+   "Brands & IP",
+   "Appearances, endorsements, content collaborations and co-created live properties."
+  ]
+ ],
+ "steps": [
+  [
+   "Brief",
+   "Date, city, venue, occasion, audience size and budget."
+  ],
+  [
+   "Shortlist",
+   "Artist options with live availability and a net quote."
+  ],
+  [
+   "Contract",
+   "Offer accepted, agreement signed, advance released."
+  ],
+  [
+   "Production",
+   "Technical and hospitality riders, travel, stay and security."
+  ],
+  [
+   "Showtime",
+   "On-ground artist liaison from arrival to sign-off."
+  ]
+ ],
+ "artists": [
+  {
+   "name": "Rishab Rikhiram Sharma",
+   "slug": "rishab-rikhiram-sharma",
+   "lane": "featured",
+   "laneLabel": "Featured artist",
+   "tier": "Featured",
+   "featured": true,
+   "role": "Sitar · neo-classical",
+   "line": "Youngest and last disciple of Pandit Ravi Shankar.",
+   "highlights": [
+    "Performed at the White House Diwali celebration",
+    "Headlined 20,000+ at Mahalaxmi Racecourse on the 10-city India Tour 2026",
+    "Creator of Sitar for Mental Health; debuted SITARA, an LED electric sitar"
+   ],
+   "bestFor": [
+    "Pheras & bridal entry",
+    "Sufi night & mehfil",
+    "Corporate gala",
+    "Wellness & retreats"
+   ],
+   "formats": "Concert recital · sitar-led sangeet or pheras · intimate mehfil · wellness sessions · brand IP",
+   "moments": [
+    "Bridal entry & pheras",
+    "Sufi night & mehfil"
+   ]
+  },
+  {
+   "name": "Jasleen Royal",
+   "slug": "jasleen-royal",
+   "lane": "featured",
+   "laneLabel": "Featured artist",
+   "tier": "Featured",
+   "featured": true,
+   "role": "Singer · songwriter · composer",
+   "line": "The voice behind modern India’s wedding soundtrack.",
+   "highlights": [
+    "Din Shagna Da — the definitive bridal-entry song",
+    "Ranjha (Shershaah) and Heeriye with Arijit Singh",
+    "Opening act for Coldplay’s India shows, 2025"
+   ],
+   "bestFor": [
+    "Bridal entry",
+    "Sangeet",
+    "Reception headline",
+    "Brand launches"
+   ],
+   "formats": "Full-band concert · acoustic set · live bridal entry · brand collaborations",
+   "moments": [
+    "Bridal entry & pheras"
+   ]
+  },
+  {
+   "name": "Pritam",
+   "slug": "pritam",
+   "lane": "composer-led-concerts",
+   "laneLabel": "Composer-led concerts",
+   "tier": "Icon",
+   "featured": false,
+   "line": "Kesariya · Tum Kya Mile · Channa Mereya",
+   "moments": [
+    "Corporate gala & awards"
+   ]
+  },
+  {
+   "name": "Vishal–Shekhar",
+   "slug": "vishal-shekhar",
+   "lane": "composer-led-concerts",
+   "laneLabel": "Composer-led concerts",
+   "tier": "Icon",
+   "featured": false,
+   "line": "Jhoome Jo Pathaan · Om Shanti Om · Bang Bang",
+   "moments": [
+    "Corporate gala & awards"
+   ]
+  },
+  {
+   "name": "Shankar Mahadevan",
+   "slug": "shankar-mahadevan",
+   "lane": "composer-led-concerts",
+   "laneLabel": "Composer-led concerts",
+   "tier": "Icon",
+   "featured": false,
+   "line": "Breathless · Dil Chahta Hai · Grammy with Shakti, 2024",
+   "moments": [
+    "Corporate gala & awards"
+   ]
+  },
+  {
+   "name": "Salim–Sulaiman",
+   "slug": "salim-sulaiman",
+   "lane": "composer-led-concerts",
+   "laneLabel": "Composer-led concerts",
+   "tier": "Premier",
+   "featured": false,
+   "line": "Chak De! India · Ainvayi Ainvayi · Shukran Allah",
+   "moments": [
+    "Corporate gala & awards"
+   ]
+  },
+  {
+   "name": "Sachin–Jigar",
+   "slug": "sachin-jigar",
+   "lane": "composer-led-concerts",
+   "laneLabel": "Composer-led concerts",
+   "tier": "Premier",
+   "featured": false,
+   "line": "Aaj Ki Raat · Saibo · Tere Vaaste",
+   "moments": [
+    "Corporate gala & awards"
+   ]
+  },
+  {
+   "name": "Jubin Nautiyal",
+   "slug": "jubin-nautiyal",
+   "lane": "bollywood-headliners",
+   "laneLabel": "Bollywood headliners",
+   "tier": "Icon",
+   "featured": false,
+   "line": "Raataan Lambiyan · Lut Gaye · Tum Hi Aana",
+   "moments": [
+    "Reception headline"
+   ]
+  },
+  {
+   "name": "Armaan Malik",
+   "slug": "armaan-malik",
+   "lane": "bollywood-headliners",
+   "laneLabel": "Bollywood headliners",
+   "tier": "Headliner",
+   "featured": false,
+   "line": "Bol Do Na Zara · Main Rahoon Ya Na Rahoon · Butta Bomma",
+   "moments": [
+    "Reception headline"
+   ]
+  },
+  {
+   "name": "Sukhwinder Singh",
+   "slug": "sukhwinder-singh",
+   "lane": "bollywood-headliners",
+   "laneLabel": "Bollywood headliners",
+   "tier": "Headliner",
+   "featured": false,
+   "line": "Chaiyya Chaiyya · Jai Ho · Haule Haule",
+   "moments": [
+    "Corporate gala & awards"
+   ]
+  },
+  {
+   "name": "Shaan",
+   "slug": "shaan",
+   "lane": "bollywood-headliners",
+   "laneLabel": "Bollywood headliners",
+   "tier": "Headliner",
+   "featured": false,
+   "line": "Chand Sifarish · Behti Hawa Sa Tha Woh · Main Hoon Na",
+   "moments": [
+    "Reception headline"
+   ]
+  },
+  {
+   "name": "Stebin Ben",
+   "slug": "stebin-ben",
+   "lane": "bollywood-headliners",
+   "laneLabel": "Bollywood headliners",
+   "tier": "Premier",
+   "featured": false,
+   "line": "Thoda Thoda Pyaar · Baarish Ban Jaana",
+   "moments": [
+    "Reception headline"
+   ]
+  },
+  {
+   "name": "Jonita Gandhi",
+   "slug": "jonita-gandhi",
+   "lane": "bollywood-headliners",
+   "laneLabel": "Bollywood headliners",
+   "tier": "Premier",
+   "featured": false,
+   "line": "The Breakup Song · Gilehriyaan · What Jhumka?",
+   "moments": [
+    "Reception headline"
+   ]
+  },
+  {
+   "name": "Kailash Kher",
+   "slug": "kailash-kher",
+   "lane": "sufi-folk-qawwali",
+   "laneLabel": "Sufi, folk & qawwali",
+   "tier": "Premier",
+   "featured": false,
+   "line": "Teri Deewani · Saiyyan · Allah Ke Bande",
+   "moments": [
+    "Sufi night & mehfil"
+   ]
+  },
+  {
+   "name": "Harshdeep Kaur",
+   "slug": "harshdeep-kaur",
+   "lane": "sufi-folk-qawwali",
+   "laneLabel": "Sufi, folk & qawwali",
+   "tier": "Signature",
+   "featured": false,
+   "line": "Katiya Karun · Dilbaro · Heer",
+   "moments": [
+    "Bridal entry & pheras",
+    "Sufi night & mehfil"
+   ]
+  },
+  {
+   "name": "Bismil",
+   "slug": "bismil",
+   "lane": "sufi-folk-qawwali",
+   "laneLabel": "Sufi, folk & qawwali",
+   "tier": "Premier",
+   "featured": false,
+   "line": "Qawwali and Sufi live sets",
+   "moments": [
+    "Sufi night & mehfil"
+   ]
+  },
+  {
+   "name": "Sagar Bhatia",
+   "slug": "sagar-bhatia",
+   "lane": "sufi-folk-qawwali",
+   "laneLabel": "Sufi, folk & qawwali",
+   "tier": "Premier",
+   "featured": false,
+   "line": "Sagar Wali Qawwali · Sufi and qawwali live sets",
+   "moments": [
+    "Sufi night & mehfil"
+   ]
+  },
+  {
+   "name": "Shalmali Kholgade",
+   "slug": "shalmali-kholgade",
+   "lane": "bollywood-voices",
+   "laneLabel": "Bollywood voices",
+   "tier": "Premier",
+   "featured": false,
+   "line": "Pareshaan · Balam Pichkari · Lat Lag Gayi",
+   "moments": [
+    "Private dinner & milestones"
+   ]
+  },
+  {
+   "name": "Siddharth Mahadevan",
+   "slug": "siddharth-mahadevan",
+   "lane": "bollywood-voices",
+   "laneLabel": "Bollywood voices",
+   "tier": "Signature",
+   "featured": false,
+   "line": "Zinda · Malang",
+   "moments": [
+    "Private dinner & milestones"
+   ]
+  },
+  {
+   "name": "Nakash Aziz",
+   "slug": "nakash-aziz",
+   "lane": "bollywood-voices",
+   "laneLabel": "Bollywood voices",
+   "tier": "Rising",
+   "featured": false,
+   "line": "Second Hand Jawaani · Dhating Naach",
+   "moments": [
+    "After-party"
+   ]
+  },
+  {
+   "name": "Amit Mishra",
+   "slug": "amit-mishra",
+   "lane": "bollywood-voices",
+   "laneLabel": "Bollywood voices",
+   "tier": "Rising",
+   "featured": false,
+   "line": "Bulleya · Manma Emotion Jaage",
+   "moments": [
+    "Private dinner & milestones"
+   ]
+  },
+  {
+   "name": "Sukriti & Prakriti Kakar",
+   "slug": "sukriti-and-prakriti-kakar",
+   "lane": "bollywood-voices",
+   "laneLabel": "Bollywood voices",
+   "tier": "Rising",
+   "featured": false,
+   "line": "Twin-sister duo · film and pop singles",
+   "moments": [
+    "After-party"
+   ]
+  },
+  {
+   "name": "Nikhita Gandhi",
+   "slug": "nikhita-gandhi",
+   "lane": "bollywood-voices",
+   "laneLabel": "Bollywood voices",
+   "tier": "Rising",
+   "featured": false,
+   "line": "Qaafirana · Burj Khalifa",
+   "moments": [
+    "Private dinner & milestones"
+   ]
+  },
+  {
+   "name": "Akriti Kakar",
+   "slug": "akriti-kakar",
+   "lane": "bollywood-voices",
+   "laneLabel": "Bollywood voices",
+   "tier": "Rising",
+   "featured": false,
+   "line": "Saturday Saturday · film and pop singles",
+   "moments": [
+    "Sangeet & mehendi"
+   ]
+  },
+  {
+   "name": "Sukhbir",
+   "slug": "sukhbir",
+   "lane": "punjabi-and-party",
+   "laneLabel": "Punjabi & party",
+   "tier": "Premier",
+   "featured": false,
+   "line": "Gal Ban Gayi · Oh Ho Ho Ho",
+   "moments": [
+    "Sangeet & mehendi",
+    "After-party"
+   ]
+  },
+  {
+   "name": "Meet Bros",
+   "slug": "meet-bros",
+   "lane": "punjabi-and-party",
+   "laneLabel": "Punjabi & party",
+   "tier": "Signature",
+   "featured": false,
+   "line": "Composers of Baby Doll · Chittiyaan Kalaiyaan",
+   "moments": [
+    "Sangeet & mehendi"
+   ]
+  },
+  {
+   "name": "Aastha Gill",
+   "slug": "aastha-gill",
+   "lane": "punjabi-and-party",
+   "laneLabel": "Punjabi & party",
+   "tier": "Signature",
+   "featured": false,
+   "line": "Buzz · DJ Waley Babu · Naagin",
+   "moments": [
+    "Sangeet & mehendi"
+   ]
+  },
+  {
+   "name": "Kanika Kapoor",
+   "slug": "kanika-kapoor",
+   "lane": "punjabi-and-party",
+   "laneLabel": "Punjabi & party",
+   "tier": "Signature",
+   "featured": false,
+   "line": "Baby Doll · Chittiyaan Kalaiyaan",
+   "moments": [
+    "Sangeet & mehendi"
+   ]
+  },
+  {
+   "name": "Manj Musik",
+   "slug": "manj-musik",
+   "lane": "punjabi-and-party",
+   "laneLabel": "Punjabi & party",
+   "tier": "Signature",
+   "featured": false,
+   "line": "Bhangra-pop producer and performer",
+   "moments": [
+    "After-party"
+   ]
+  },
+  {
+   "name": "Gurdeep Mehndi",
+   "slug": "gurdeep-mehndi",
+   "lane": "punjabi-and-party",
+   "laneLabel": "Punjabi & party",
+   "tier": "Rising",
+   "featured": false,
+   "line": "High-energy bhangra live sets",
+   "moments": [
+    "After-party"
+   ]
+  },
+  {
+   "name": "Navraj Hans",
+   "slug": "navraj-hans",
+   "lane": "punjabi-and-party",
+   "laneLabel": "Punjabi & party",
+   "tier": "Rising",
+   "featured": false,
+   "line": "Punjabi singer and performer",
+   "moments": [
+    "Sangeet & mehendi"
+   ]
+  },
+  {
+   "name": "Sanam",
+   "slug": "sanam",
+   "lane": "bands-indie-rising",
+   "laneLabel": "Bands, indie & rising",
+   "tier": "Headliner",
+   "featured": false,
+   "line": "Fronted by Sanam Puri · retro reimaginations, full band",
+   "moments": [
+    "Reception headline"
+   ]
+  },
+  {
+   "name": "Rahul Vaidya",
+   "slug": "rahul-vaidya",
+   "lane": "bands-indie-rising",
+   "laneLabel": "Bands, indie & rising",
+   "tier": "Premier",
+   "featured": false,
+   "line": "Indian Idol and Bigg Boss 14 finalist",
+   "moments": [
+    "Private dinner & milestones"
+   ]
+  },
+  {
+   "name": "Akhil Sachdeva",
+   "slug": "akhil-sachdeva",
+   "lane": "bands-indie-rising",
+   "laneLabel": "Bands, indie & rising",
+   "tier": "Signature",
+   "featured": false,
+   "line": "Humsafar · Tera Ban Jaunga",
+   "moments": [
+    "Bridal entry & pheras"
+   ]
+  },
+  {
+   "name": "Suryaveer",
+   "slug": "suryaveer",
+   "lane": "bands-indie-rising",
+   "laneLabel": "Bands, indie & rising",
+   "tier": "Rising",
+   "featured": false,
+   "line": "Live vocalist · wedding and private-event sets",
+   "moments": [
+    "Private dinner & milestones"
+   ]
+  }
+ ]
+}

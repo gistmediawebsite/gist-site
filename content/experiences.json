@@ -1,0 +1,200 @@
+{
+ "intro": "Private access to the world's most exclusive music, sport and festival moments — the rooms few can enter, arranged end to end.",
+ "pillars": [
+  ["A curated season", "Five marquee properties across music, motorsport, festivals and tennis, chosen for travellers from India."],
+  ["One desk, end to end", "Access, stays, flights, transfers and on-ground concierge through a single point of contact."],
+  ["Discretion by default", "Guest lists, dates and commercials stay private — for families, founders and companies."]
+ ],
+ "arrange": [
+  ["Access", "Official tickets, private suites and hospitality, confirmed in writing before you pay."],
+  ["Stays", "Hand-picked hotels chosen for the room and the distance to the venue."],
+  ["Movement", "Flights, airport pick-ups, venue transfers and private cars timed to the event."],
+  ["Concierge", "Dinners, add-on experiences and one person on call from arrival to the drive home."]
+ ],
+ "occasions": [
+  ["Client & dealer hospitality", "A private setting to host the people who matter", "Diljit Dosanjh private suites · F1 hospitality · Wimbledon hospitality"],
+  ["Founders' & friends' getaways", "Short trips built around a big moment", "F1 Abu Dhabi & Qatar · Tomorrowland Comfort · The Weeknd VIP"],
+  ["Family celebrations", "Milestones marked somewhere memorable", "Diljit Dosanjh suites · Wimbledon 2027 · Thailand extensions"],
+  ["Next-gen & groups", "Friend groups of four to twelve", "Tomorrowland Thailand · The Weeknd, Hong Kong & Kuala Lumpur"],
+  ["Incentives for top performers", "Rewards for dealers, agents and leadership teams", "F1 Abu Dhabi · F1 Qatar · Tomorrowland Thailand"]
+ ],
+ "calendar": [
+  ["2026-10-23", "23–25 Oct 2026", "Formula 1 · United States Grand Prix", "Austin", "formula-1"],
+  ["2026-10-24", "24–31 Oct 2026", "The Weeknd · After Hours Til Dawn", "Hong Kong", "the-weeknd"],
+  ["2026-10-30", "30 Oct – 1 Nov 2026", "Formula 1 · Mexico City Grand Prix", "Mexico City", "formula-1"],
+  ["2026-11-04", "4–5 Nov 2026", "The Weeknd · After Hours Til Dawn", "Kuala Lumpur", "the-weeknd"],
+  ["2026-11-06", "6–8 Nov 2026", "Formula 1 · São Paulo Grand Prix", "São Paulo", "formula-1"],
+  ["2026-11-19", "19–21 Nov 2026", "Formula 1 · Las Vegas Grand Prix", "Las Vegas", "formula-1"],
+  ["2026-11-21", "21 Nov 2026", "Diljit Dosanjh · Aura India Tour, private suites", "Ahmedabad", "diljit-dosanjh-private-suites"],
+  ["2026-11-27", "27–29 Nov 2026", "Formula 1 · Qatar Grand Prix", "Lusail", "formula-1"],
+  ["2026-12-04", "4–6 Dec 2026", "Formula 1 · Abu Dhabi Grand Prix, season finale", "Abu Dhabi", "formula-1"],
+  ["2026-12-11", "11–13 Dec 2026", "Tomorrowland Thailand", "Pattaya", "tomorrowland-thailand"],
+  ["2027-06-28", "28 Jun – 11 Jul 2027", "Wimbledon · 150 years of The Championships", "London", "wimbledon-2027"]
+ ],
+ "steps": [
+  ["Brief", "Event, dates, number of guests, the kind of experience and any preferences."],
+  ["Proposal", "Options with live availability and an all-in quote, within 24 hours."],
+  ["Hold", "Offer accepted and an advance released; your places are secured."],
+  ["Arrangements", "Tickets or suites, hotels, flights, transfers and dinners, confirmed in writing."],
+  ["On the day", "One concierge on call from arrival to the drive home."]
+ ],
+ "terms": "Indicative and subject to availability at the time of booking. Diljit Dosanjh suites include all fees and taxes. Other prices exclude GST, TCS where applicable, flights, hotels and transfers unless stated. International prices in US dollars per person.",
+ "experiences": [
+  {
+   "slug": "formula-1",
+   "name": "Formula 1",
+   "category": "Motorsport",
+   "subtitle": "Grand Prix hospitality · season run-in",
+   "line": "The final six races of the 2026 championship — the paddock where the world's most powerful people gather.",
+   "image": "wheel",
+   "when": "23 Oct – 6 Dec 2026",
+   "where": "Austin · Mexico City · São Paulo · Las Vegas · Lusail · Abu Dhabi",
+   "highlights": [
+    "Six Grands Prix across the Americas, Las Vegas and the Gulf, 23 October to 6 December 2026",
+    "Qatar and the Abu Dhabi season finale, a short flight from Delhi and Mumbai",
+    "Grandstand, hospitality lounge or premium hospitality, with hotel and transfers arranged"
+   ],
+   "bestFor": ["Client hospitality", "Founders' getaway", "Incentive trips", "Motorsport fans"],
+   "access": "Grandstand seating · hospitality lounges · premium hospitality where available · hotels · transfers · on-ground concierge",
+   "detailTitle": "Six races. One desk.",
+   "table": {
+    "head": ["Grand Prix", "Circuit", "Race weekend"],
+    "rows": [
+     ["United States", "Circuit of The Americas, Austin", "23–25 Oct"],
+     ["Mexico City", "Autódromo Hermanos Rodríguez", "30 Oct–1 Nov"],
+     ["São Paulo", "Interlagos", "6–8 Nov"],
+     ["Las Vegas", "Las Vegas Strip Circuit", "19–21 Nov"],
+     ["Qatar", "Lusail International Circuit", "27–29 Nov"],
+     ["Abu Dhabi", "Yas Marina Circuit · finale", "4–6 Dec"]
+    ]
+   },
+   "options": [
+    ["Grandstand", "A reserved seat on a key corner or the start-finish straight."],
+    ["Hospitality lounge", "Covered seating, food and drink through the day, a calmer race weekend."],
+    ["Premium hospitality", "Pit-lane and paddock-side suites where available. Best requested early."]
+   ],
+   "pick": "The Abu Dhabi finale, 4–6 December: the championship decided under lights, three hours from India.",
+   "price": "On request",
+   "priceNote": "Quoted per guest with access, hotel and transfers."
+  },
+  {
+   "slug": "the-weeknd",
+   "name": "The Weeknd",
+   "category": "Music",
+   "subtitle": "After Hours Til Dawn · Asia",
+   "line": "The final Asia leg of the tour, in Hong Kong and Kuala Lumpur.",
+   "image": "lights",
+   "when": "24 Oct – 5 Nov 2026",
+   "where": "Hong Kong · Kuala Lumpur",
+   "highlights": [
+    "Kai Tak Stadium, Hong Kong · 24, 25, 30 and 31 October 2026",
+    "National Stadium Bukit Jalil, Kuala Lumpur · 4 and 5 November 2026",
+    "From standing to Ultimate VIP, with hotels and transfers on request"
+   ],
+   "bestFor": ["Friends' trip", "Next-gen groups", "Long weekend", "Fans"],
+   "access": "Seated categories · Silver VIP · Gold Lounge VIP · Ultimate VIP · hotels · transfers",
+   "detailTitle": "Seating and prices.",
+   "tables": [
+    {"caption": "Hong Kong · Kai Tak Stadium", "head": ["Category", "Per person"], "rows": [
+     ["Standing", "US$194–296"], ["Categories B to F", "US$182–306"], ["Category A", "US$342–423"],
+     ["Silver VIP", "US$364–823"], ["Gold Lounge VIP", "US$845–940"], ["Ultimate VIP · 25 Oct", "US$2,335"]]},
+    {"caption": "Kuala Lumpur · Bukit Jalil", "head": ["Category", "Per person"], "rows": [
+     ["Upper tier", "US$133–835"], ["Lower tier", "US$150–1,220"], ["Floor premium blocks", "US$273–1,507"]]}
+   ],
+   "tableNote": "Per person, in US dollars. Prices vary by date and section, and are confirmed at the time of booking.",
+   "price": "US$133–2,335",
+   "priceNote": "Per person, by city, date and category."
+  },
+  {
+   "slug": "diljit-dosanjh-private-suites",
+   "name": "Diljit Dosanjh",
+   "category": "Private suites",
+   "subtitle": "Aura India Tour · Ahmedabad",
+   "line": "Watched from your own 25-seat suite above the biggest stadium in the world.",
+   "image": "stadium-seats",
+   "when": "Saturday 21 November 2026",
+   "where": "Narendra Modi Stadium, Motera, Ahmedabad",
+   "highlights": [
+    "Saturday 21 November 2026 · Narendra Modi Stadium, Motera",
+    "Private 25-seat suites with balcony seating, each sold whole",
+    "Unlimited premium food and beverages; rates include all fees and taxes"
+   ],
+   "bestFor": ["Client & dealer nights", "Family celebrations", "Wedding guests", "Friends' night"],
+   "access": "Presidential Suite, 4th floor · Premium Suite, 5th floor · parking · Ahmedabad hotels and transfers on request",
+   "detailTitle": "The suites.",
+   "table": {
+    "head": ["Suite", "Guests", "Per guest", "Per suite"],
+    "rows": [
+     ["Presidential · 4th floor", "25", "₹36,800", "₹9,20,000"],
+     ["Premium · 5th floor", "25", "₹23,000", "₹5,75,000"]
+    ]
+   },
+   "options": [
+    ["Your own suite", "25 seats with balcony views of the stage, sold to one party only."],
+    ["Unlimited premium F&B", "Food and beverages served in the suite through the show."],
+    ["All-in pricing", "Rates include all applicable fees and taxes. Parking details confirmed closer to the date."]
+   ],
+   "tableNote": "Per guest figures are the suite price divided by 25. Limited suites on each floor.",
+   "price": "From ₹5,75,000",
+   "priceNote": "Per suite of 25 guests, all-in."
+  },
+  {
+   "slug": "tomorrowland-thailand",
+   "name": "Tomorrowland Thailand",
+   "category": "Festival",
+   "subtitle": "Wisdom Valley · Pattaya",
+   "line": "The festival's first edition in Asia, a short flight from India.",
+   "image": "wheel-festival",
+   "when": "11–13 December 2026",
+   "where": "Wisdom Valley, Pattaya",
+   "highlights": [
+    "11–13 December 2026 · Wisdom Valley, Pattaya",
+    "Three days across multiple stages, with official festival passes",
+    "Hotels 15–20 km from the venue, transfers, and extensions across Thailand"
+   ],
+   "bestFor": ["Next-gen groups", "Founders & friends", "Incentive trips", "Couples"],
+   "access": "Full Madness pass · Comfort pass · hotels · venue transfers · Bangkok, islands and wellness extensions",
+   "detailTitle": "Two ways in.",
+   "table": {
+    "head": ["Pass", "Includes", "Per person"],
+    "rows": [
+     ["Full Madness", "Three days, all stages and areas, festival bracelet", "₹1,35,000"],
+     ["Comfort", "Comfort zones and bars, premium restrooms, fast-track entry, lounge access", "₹2,10,000"]
+    ]
+   },
+   "stays": "Centara Pattaya · Grand Palazzo · Centre Point Prime · Hotel J · LK Mantra Pura · Mike Garden Resort. All 20–25 minutes by car.",
+   "tableNote": "Per person; government taxes extra. Flights, hotels and transfers added to suit your group.",
+   "price": "From ₹1,35,000",
+   "priceNote": "Per person, three-day pass."
+  },
+  {
+   "slug": "wimbledon-2027",
+   "name": "Wimbledon 2027",
+   "category": "Tennis",
+   "subtitle": "The Championships · London",
+   "line": "The 150th anniversary Championships — the most coveted seat in world sport.",
+   "image": "rackets",
+   "when": "28 June – 11 July 2027",
+   "where": "All England Lawn Tennis & Croquet Club, London",
+   "highlights": [
+    "28 June to 11 July 2027 · All England Lawn Tennis & Croquet Club",
+    "Day hospitality through to the second week and finals",
+    "London stays, cars and dinners arranged around the days of play"
+   ],
+   "bestFor": ["Client hospitality", "Family summer", "Leadership teams", "Tennis lovers"],
+   "access": "Day hospitality · second-week and finals days · London hotels · private cars · dinners",
+   "detailTitle": "Plan early.",
+   "detailIntro": "Hospitality for the anniversary year is expected to be in heavy demand. We are building a priority list now, with no commitment at this stage.",
+   "table": {
+    "head": ["Option", "What it is", "Best for"],
+    "rows": [
+     ["Day hospitality", "A table, lunch and reserved seating for a single day of play", "First visits, clients"],
+     ["Second week", "Quarter-finals and semi-finals, when the draw comes alive", "Tennis lovers"],
+     ["Finals weekend", "The ladies' and gentlemen's finals", "Once-in-a-lifetime"]
+    ]
+   },
+   "price": "On request",
+   "priceNote": "Priority list open, no commitment at this stage."
+  }
+ ]
+}

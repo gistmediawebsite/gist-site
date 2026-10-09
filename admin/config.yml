@@ -1,0 +1,115 @@
+# GIST editor (Sveltia CMS). Open https://www.gistmedia.org/admin/
+# Sign in with GitHub using "Sign In with Token" (a fine-grained token with Contents: read & write on this repo).
+backend:
+  name: github
+  repo: gistmediawebsite/gist-site   # ← change once, after creating the repo
+  branch: main
+  commit_messages:
+    create: "Publish: {{slug}}"
+    update: "Update: {{slug}}"
+    delete: "Remove: {{slug}}"
+
+site_url: https://www.gistmedia.org
+display_url: https://www.gistmedia.org
+media_folder: static/img/news
+public_folder: /img/news
+
+collections:
+  - name: articles
+    label: What's Happening — articles
+    label_singular: Article
+    folder: content/articles
+    create: true
+    slug: "{{slug}}"
+    extension: md
+    format: frontmatter
+    sortable_fields: [date, title]
+    summary: "{{title}} — {{date}}"
+    preview_path: "news/{{slug}}/"
+    fields:
+      - { name: title, label: Headline, widget: string }
+      - { name: description, label: "Standfirst (one or two sentences, also the Google snippet)", widget: text }
+      - { name: date, label: Published, widget: datetime, format: "YYYY-MM-DDTHH:mm:ssZ" }
+      - { name: updated, label: Updated, widget: datetime, format: "YYYY-MM-DDTHH:mm:ssZ", required: false }
+      - name: section
+        label: Section
+        widget: select
+        options:
+          - { label: Celebrity, value: celebrity }
+          - { label: "Music & concerts", value: music }
+          - { label: "Movies & OTT", value: movies }
+          - { label: Sport, value: sport }
+          - { label: "Events & festivals", value: events }
+          - { label: "Luxury & travel", value: luxury }
+      - { name: tags, label: Tags, widget: list, required: false }
+      - { name: image, label: Main image, widget: image, required: false }
+      - { name: image_alt, label: "Image description (for blind readers & Google)", widget: string, required: false }
+      - { name: image_credit, label: Image credit, widget: string, required: false }
+      - { name: author, label: Byline, widget: string, default: GIST Desk }
+      - { name: featured, label: "Push to top of homepage", widget: boolean, default: false }
+      - { name: draft, label: "Draft (hidden from site)", widget: boolean, default: false }
+      - { name: sponsored, label: "Paid partnership", widget: boolean, default: false }
+      - { name: sponsor, label: Sponsor name, widget: string, required: false }
+      - { name: disclosure, label: "Disclosure line (e.g. artist bookable via GIST Talent)", widget: string, required: false }
+      - { name: source, label: "Came from", widget: select, options: [manual, instagram, linkedin, n8n], default: manual, required: false }
+      - { name: source_url, label: "Original post link", widget: string, required: false }
+      - name: sources
+        label: Sources
+        widget: list
+        required: false
+        fields:
+          - { name: name, label: Name, widget: string }
+          - { name: url, label: Link, widget: string }
+      - { name: body, label: Story, widget: markdown }
+
+  - name: config
+    label: Site settings
+    files:
+      - name: settings
+        label: Contact, analytics & social links
+        file: content/settings.json
+        format: json
+        fields:
+          - { name: siteName, label: Site name, widget: string }
+          - { name: siteUrl, label: Site URL, widget: string }
+          - { name: tagline, label: Tagline, widget: string }
+          - { name: description, label: "Default Google description", widget: text }
+          - { name: email, label: Email, widget: string }
+          - { name: whatsapp, label: "WhatsApp number (digits only, with 91)", widget: string }
+          - { name: whatsappDisplay, label: "WhatsApp number as shown", widget: string }
+          - { name: instagram, label: Instagram URL, widget: string }
+          - { name: instagramHandle, label: Instagram handle, widget: string }
+          - { name: linkedin, label: LinkedIn URL, widget: string, required: false }
+          - { name: facebook, label: Facebook URL, widget: string, required: false }
+          - { name: ga4Id, label: GA4 Measurement ID, widget: string, required: false }
+          - { name: googleSiteVerification, label: Search Console verification code, widget: string, required: false }
+          - { name: formEndpoint, label: "Form endpoint (FormSubmit or n8n webhook)", widget: string }
+          - { name: publisher, label: Operating company, widget: string }
+          - { name: grievanceOfficer, label: Grievance Officer, widget: string }
+          - { name: defaultAuthor, label: Default byline, widget: string }
+          - name: sections
+            label: News sections
+            widget: list
+            fields: [{ name: id, label: "ID (lowercase, used in URL)", widget: string }, { name: label, label: Label, widget: string }]
+      - name: artists
+        label: Artist roster
+        file: content/artists.json
+        format: json
+        fields:
+          - name: artists
+            label: Artists
+            widget: list
+            summary: "{{name}} — {{tier}}"
+            fields:
+              - { name: name, label: Name, widget: string }
+              - { name: slug, label: "URL slug", widget: string }
+              - { name: lane, label: "Lane ID", widget: select, options: [featured, composer-led-concerts, bollywood-headliners, sufi-folk-qawwali, bollywood-voices, punjabi-and-party, bands-indie-rising] }
+              - { name: laneLabel, label: Lane label, widget: string }
+              - { name: tier, label: Tier, widget: select, options: [Featured, Icon, Headliner, Premier, Signature, Rising] }
+              - { name: featured, label: Featured, widget: boolean, default: false }
+              - { name: role, label: "Role (featured only)", widget: string, required: false }
+              - { name: line, label: "Known for / one line", widget: string }
+              - { name: highlights, label: "Highlights (featured)", widget: list, required: false }
+              - { name: bestFor, label: "Best for (featured)", widget: list, required: false }
+              - { name: formats, label: "Formats (featured)", widget: string, required: false }
+              - { name: moments, label: Moments, widget: list, required: false }
