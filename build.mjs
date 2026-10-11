@@ -230,7 +230,7 @@ function accessForm(pre) {
 }
 const steps = (list) => `<ol class="steps">${list.map(([t, d]) => `<li><strong>${esc(t)}</strong><span>${esc(d)}</span></li>`).join("")}</ol>`;
 function artistCard(a) {
-  return `<a class="acard${a.featured ? " feat" : ""}" href="/artist-booking/${a.slug}/"><span class="tier">${esc(a.tier)}</span><h3>${esc(a.name)}</h3><p>${esc(a.role || a.line)}</p></a>`;
+  return `<a class="acard${a.featured ? " feat" : ""}${a.image ? " hasphoto" : ""}" href="/artist-booking/${a.slug}/">${a.image ? `<img class="aphoto" src="${esc(a.image)}" alt="${esc(a.name)}" loading="lazy" decoding="async">` : ""}<span class="tier">${esc(a.tier)}</span><h3>${esc(a.name)}</h3><p>${esc(a.role || a.line)}</p></a>`;
 }
 function expCard(x) {
   return `<a class="xcard hoverzoom" href="/experiences/${x.slug}/">${img(x.image, { alt: "", sizes: "(max-width: 520px) 100vw, (max-width: 980px) 50vw, 25vw" })}<span class="cat">${esc(x.category)}</span><div class="txt"><span class="where">${esc(x.when)}</span><h3>${esc(x.name)}</h3><span class="from">${esc(x.price)}</span></div></a>`;
@@ -327,6 +327,7 @@ for (const a of ARTICLES) {
     const lane = a.laneLabel;
     const others = TALENT.artists.filter((x) => x !== a && x.lane === a.lane).slice(0, 4);
     const body = `<div class="wrap"><header class="pagehead artist-head">${crumbs([["/", "Home"], ["/artist-booking/", "Artist Booking"], [p, a.name]])}
+      ${a.image ? `<figure class="aphoto-hero"><img src="${esc(a.image)}" alt="${esc(a.name)}" fetchpriority="high" decoding="async">${a.image_credit ? `<figcaption>${esc(a.image_credit)}</figcaption>` : ""}</figure>` : ""}
       <span class="tier">${esc(a.featured ? a.role : lane + " · " + a.tier)}</span><h1>Book ${esc(a.name)}</h1><p class="standfirst">${esc(a.featured ? a.line : a.line)}</p>
       <p class="headcta"><a class="btn" href="#enquire">Check availability ${ARROW}</a><a class="btn ghost" href="${wa(`Hi GIST, I'd like to check availability for ${a.name}.`)}" target="_blank" rel="noopener" data-wa>WhatsApp</a></p></header>
       <section class="section tight two">
