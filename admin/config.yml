@@ -28,7 +28,7 @@ collections:
     preview_path: "news/{{slug}}/"
     fields:
       - { name: title, label: Headline, widget: string }
-      - { name: description, label: "Standfirst (one or two sentences, also the Google snippet)", widget: text }
+      - { name: description, label: "Summary line: shows under the headline and in Google results (keep under ~155 characters)", widget: text }
       - { name: date, label: Published, widget: datetime, format: "YYYY-MM-DDTHH:mm:ssZ" }
       - { name: updated, label: Updated, widget: datetime, format: "YYYY-MM-DDTHH:mm:ssZ", required: false }
       - name: section
@@ -41,6 +41,8 @@ collections:
           - { label: Sport, value: sport }
           - { label: "Events & festivals", value: events }
           - { label: "Luxury & travel", value: luxury }
+          - { label: "India & world", value: news }
+          - { label: Business, value: business }
       - { name: tags, label: Tags, widget: list, required: false }
       - { name: image, label: Main image, widget: image, required: false }
       - { name: image_alt, label: "Image description (for blind readers & Google)", widget: string, required: false }
@@ -83,7 +85,8 @@ collections:
           - { name: facebook, label: Facebook URL, widget: string, required: false }
           - { name: ga4Id, label: GA4 Measurement ID, widget: string, required: false }
           - { name: googleSiteVerification, label: Search Console verification code, widget: string, required: false }
-          - { name: formEndpoint, label: "Form endpoint (FormSubmit or n8n webhook)", widget: string }
+          - { name: formEndpoint, label: "Form endpoint (n8n webhook: GIST HQ — Website enquiries)", widget: string }
+          - { name: turnstileSiteKey, label: "Cloudflare Turnstile site key (spam check on forms)", widget: string, required: false }
           - { name: publisher, label: Operating company, widget: string }
           - { name: grievanceOfficer, label: Grievance Officer, widget: string }
           - { name: defaultAuthor, label: Default byline, widget: string }
@@ -109,6 +112,9 @@ collections:
               - { name: featured, label: Featured, widget: boolean, default: false }
               - { name: role, label: "Role (featured only)", widget: string, required: false }
               - { name: line, label: "Known for / one line", widget: string }
+              - { name: image, label: "Photo (portrait works best; it is shown cropped to 4:5)", widget: image, required: false, media_folder: /static/img/artists, public_folder: /img/artists }
+              - { name: image_credit, label: "Photo credit (photographer or source)", widget: string, required: false }
+              - { name: image_position, label: "Photo focus (where the face is: top, center or bottom)", widget: select, options: [top, center, bottom], default: top, required: false }
               - { name: highlights, label: "Highlights (featured)", widget: list, required: false }
               - { name: bestFor, label: "Best for (featured)", widget: list, required: false }
               - { name: formats, label: "Formats (featured)", widget: string, required: false }

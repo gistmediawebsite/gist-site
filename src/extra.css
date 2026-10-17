@@ -122,3 +122,45 @@
 .aphoto-hero{margin:14px 0 22px}
 .aphoto-hero img{width:min(380px,100%);aspect-ratio:4/5;object-fit:cover;display:block;border-radius:2px}
 .aphoto-hero figcaption{font-size:12px;opacity:.65;margin-top:6px}
+
+/* Forms: "Other" boxes, spam check, error messages */
+.other-box[hidden]{display:none}
+.form .ts-slot:empty{display:none}
+.form .cf-turnstile{min-height:0}
+.field .msg:empty{display:none}
+.form button[aria-busy="true"]{opacity:.7;cursor:progress}
+
+/* ---------- Spotlight grid (artist cards with photos) ---------- */
+.acard.hasphoto{padding:0 0 18px;gap:8px;overflow:hidden}
+.acard.hasphoto .tier,.acard.hasphoto h3,.acard.hasphoto p{padding:0 16px}
+.acard .aframe{position:relative;display:block;aspect-ratio:4/5;overflow:hidden;background:var(--ink);margin-bottom:6px}
+.acard .aframe .aphoto{position:absolute;inset:0;width:100%;height:100%;aspect-ratio:auto;margin:0;border-radius:0;object-fit:cover;
+  filter:grayscale(1) contrast(1.08) brightness(.86);transform:scale(1.02);transition:filter .6s var(--ease),transform 1.1s var(--ease)}
+.acard .aframe::after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(180deg,rgba(18,18,17,0) 55%,rgba(18,18,17,.55) 100%);mix-blend-mode:multiply;transition:opacity .6s var(--ease)}
+.acard .abook{position:absolute;left:12px;bottom:12px;z-index:1;display:inline-flex;align-items:center;gap:6px;padding:8px 12px;background:var(--lime);color:var(--on-lime);
+  font:700 12px/1 var(--f-ui);letter-spacing:.06em;text-transform:uppercase;opacity:0;transform:translateY(8px);transition:opacity .35s var(--ease),transform .35s var(--ease)}
+.acard.hasphoto:hover .aphoto,.acard.hasphoto:focus-visible .aphoto,.acard.hasphoto.lit .aphoto{filter:none;transform:scale(1.06)}
+.acard.hasphoto:hover .aframe::after,.acard.hasphoto:focus-visible .aframe::after,.acard.hasphoto.lit .aframe::after{opacity:.35}
+.acard.hasphoto:hover .abook,.acard.hasphoto:focus-visible .abook,.acard.hasphoto.lit .abook{opacity:1;transform:none}
+/* keep photo cards dark on hover (lime stays on the button only) */
+.acard.hasphoto:hover,.on-band .acard.hasphoto:hover,.acard.hasphoto:focus-visible{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.on-band .acard.hasphoto:hover{background:var(--band-2);color:var(--band-ink);border-color:var(--lime)}
+.acard.hasphoto:hover h3{color:var(--lime)}
+/* row-by-row fade-up (site.js adds .reveal then .in) */
+.agrid.reveal .acard{opacity:0;transform:translateY(18px);transition:opacity .7s var(--ease),transform .7s var(--ease);transition-delay:calc(var(--i,0) * 60ms)}
+.agrid.reveal.in .acard{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){
+  .acard .aframe .aphoto,.acard .abook,.agrid.reveal .acard{transition:none}
+  .agrid.reveal .acard{opacity:1;transform:none}
+  .acard.hasphoto:hover .aphoto,.acard.hasphoto.lit .aphoto{transform:none}
+}
+.aphoto-hero img{width:min(420px,100%);aspect-ratio:4/5;object-fit:cover;display:block;border-radius:0}
+@media (max-width:520px){.agrid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.acard.hasphoto h3{font-size:22px}.acard.hasphoto p{display:none}.acard .abook{left:8px;bottom:8px;padding:7px 9px;font-size:11px}}
+/* artist "tier" label: don't inherit the ticket-tier box styles */
+.acard .tier,.artist-head .tier,.fcard .tier{display:block;border:0;padding:0;background:none;box-shadow:none;cursor:inherit;grid-template-columns:none}
+.acard.hasphoto .tier{padding:0 16px}
+.agrid > *{min-width:0}
+.acard.hasphoto h3{font-size:clamp(22px,1.9vw,28px);overflow-wrap:break-word;hyphens:manual}
+.aphoto-hero img{width:min(360px,100%)}
+/* home page: six artists sit in one row on desktop */
+@media (min-width:1100px){.on-band .agrid{grid-template-columns:repeat(6,minmax(0,1fr))}}

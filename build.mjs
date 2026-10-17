@@ -133,7 +133,7 @@ ${extraHead}
 <script type="application/ld+json">${JSON.stringify(graph).replace(/</g, "\\u003c")}</script>
 ${ga}
 </head>
-<body data-form-endpoint="${esc(S.formEndpoint)}" data-email="${esc(S.email)}">
+<body data-form-endpoint="${esc(S.formEndpoint)}" data-email="${esc(S.email)}"${S.turnstileSiteKey ? ` data-turnstile="${esc(S.turnstileSiteKey)}"` : ""}>
 <a class="skip" href="#main">Skip to content</a>
 <header class="masthead">
   <div class="wrap">
@@ -194,6 +194,11 @@ const crumbLd = (items) => ({ "@type": "BreadcrumbList", itemListElement: items.
 function field(id, lab, control, hint) {
   return `<div class="field"><label for="${id}">${esc(lab)}</label>${control}${hint ? `<span class="hint">${esc(hint)}</span>` : ""}</div>`;
 }
+// A select whose "Other" option opens a "Please specify" box (wired up in site.js)
+function otherBox(id, name, lab) {
+  return `<div class="field other-box" id="${id}" hidden><label for="${id}-i">${esc(lab)}</label><input id="${id}-i" name="${name}_other" maxlength="200" disabled></div>`;
+}
+const tsSlot = '<div class="ts-slot" aria-hidden="false"></div>';
 function talentForm(pre) {
   const opts = TALENT.artists.map((a) => `<option${pre === a.slug ? " selected" : ""}>${esc(a.name)}</option>`).join("");
   return `<div class="formbox" id="enquire"><div class="two" style="gap:28px">
@@ -204,10 +209,12 @@ function talentForm(pre) {
       <input type="text" name="_honey" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
       <div class="grid2">${field("t-name", "Name", `<input id="t-name" name="name" required autocomplete="name">`)}${field("t-phone", "Phone / WhatsApp", `<input id="t-phone" name="phone" type="tel" required autocomplete="tel" placeholder="+91">`)}</div>
       ${field("t-email", "Email", `<input id="t-email" name="email" type="email" required autocomplete="email">`)}
-      ${field("t-artist", "Artist", `<select id="t-artist" name="artist" required><option value="">Choose an artist</option>${opts}<option>Not sure — suggest options</option></select>`)}
-      <div class="grid2">${field("t-occasion", "Occasion", `<select id="t-occasion" name="occasion" required><option value="">Choose</option>${["Wedding", "Sangeet / mehendi", "Private celebration", "Corporate", "Brand / IP", "Other"].map((x) => `<option>${x}</option>`).join("")}</select>`)}${field("t-date", "Date", `<input id="t-date" name="date" type="date" required>`)}</div>
-      <div class="grid2">${field("t-city", "City / venue", `<input id="t-city" name="city" required>`)}${field("t-aud", "Audience size", `<select id="t-aud" name="audience"><option>Under 100</option><option>100–300</option><option>300–1,000</option><option>1,000+</option></select>`)}</div>
+      ${field("t-artist", "Artist", `<select id="t-artist" name="artist" required data-other="t-artist-o"><option value="">Choose an artist</option>${opts}<option>Not sure — suggest options</option><option>Other</option></select>`)}
+      ${otherBox("t-artist-o", "artist", "Which artist?")}
+      <div class="grid2"><div style="display:grid;gap:16px">${field("t-occasion", "Occasion", `<select id="t-occasion" name="occasion" required data-other="t-occasion-o"><option value="">Choose</option>${["Wedding", "Sangeet / mehendi", "Private celebration", "Corporate event", "Brand launch / activation", "College or club event", "Other"].map((x) => `<option>${x}</option>`).join("")}</select>`)}${otherBox("t-occasion-o", "occasion", "What's the occasion?")}</div>${field("t-date", "Date", `<input id="t-date" name="date" type="date" required>`, "Approximate is fine")}</div>
+      <div class="grid2">${field("t-city", "City / venue", `<input id="t-city" name="city" required autocomplete="address-level2">`)}${field("t-aud", "Audience size", `<select id="t-aud" name="audience"><option value="">Choose</option><option>Under 100</option><option>100–300</option><option>300–1,000</option><option>1,000+</option><option>Not sure yet</option></select>`, "Optional")}</div>
       ${field("t-notes", "Budget and anything else", `<textarea id="t-notes" name="notes" maxlength="1500"></textarea>`, "Optional")}
+      ${tsSlot}
       <div><button class="btn" type="submit">Send booking enquiry ${ARROW}</button></div>
       <div class="status" role="status" aria-live="polite" hidden></div>
     </form></div></div>`;
@@ -221,16 +228,27 @@ function accessForm(pre) {
       <input type="text" name="_honey" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
       <div class="grid2">${field("x-name", "Name", `<input id="x-name" name="name" required autocomplete="name">`)}${field("x-phone", "Phone / WhatsApp", `<input id="x-phone" name="phone" type="tel" required autocomplete="tel" placeholder="+91">`)}</div>
       ${field("x-email", "Email", `<input id="x-email" name="email" type="email" required autocomplete="email">`)}
-      ${field("x-event", "Experience", `<select id="x-event" name="experience" required><option value="">Choose</option>${opts}<option>Something else</option></select>`)}
-      <div class="grid2">${field("x-guests", "Guests", `<input id="x-guests" name="guests" type="number" min="1" max="200" value="2" required>`)}${field("x-from", "Travelling from", `<input id="x-from" name="from" placeholder="e.g. Mumbai">`)}</div>
-      ${field("x-notes", "Preferences", `<textarea id="x-notes" name="notes" maxlength="1500"></textarea>`, "Optional")}
+      ${field("x-event", "Experience", `<select id="x-event" name="experience" required data-other="x-event-o"><option value="">Choose</option>${opts}<option>Other</option></select>`)}
+      ${otherBox("x-event-o", "experience", "Which event or experience?")}
+      <div class="grid2">${field("x-guests", "Guests", `<input id="x-guests" name="guests" type="number" inputmode="numeric" min="1" max="200" value="2" required>`)}${field("x-from", "Travelling from", `<input id="x-from" name="from" placeholder="e.g. Mumbai" autocomplete="address-level2">`, "Optional")}</div>
+      ${field("x-notes", "Dates, budget and preferences", `<textarea id="x-notes" name="notes" maxlength="1500"></textarea>`, "Optional")}
+      ${tsSlot}
       <div><button class="btn" type="submit">Send enquiry ${ARROW}</button></div>
       <div class="status" role="status" aria-live="polite" hidden></div>
     </form></div></div>`;
 }
 const steps = (list) => `<ol class="steps">${list.map(([t, d]) => `<li><strong>${esc(t)}</strong><span>${esc(d)}</span></li>`).join("")}</ol>`;
-function artistCard(a) {
-  return `<a class="acard${a.featured ? " feat" : ""}${a.image ? " hasphoto" : ""}" href="/artist-booking/${a.slug}/">${a.image ? `<img class="aphoto" src="${esc(a.image)}" alt="${esc(a.name)}" loading="lazy" decoding="async">` : ""}<span class="tier">${esc(a.tier)}</span><h3>${esc(a.name)}</h3><p>${esc(a.role || a.line)}</p></a>`;
+// Artist photo: /img/artists/<slug>.webp (+ -sm.webp). Spotlight grid styles live in extra.css; reveal/centre logic in site.js.
+function artistPhoto(a, o = {}) {
+  if (!a.image) return "";
+  const src = a.image, small = src.replace(/(\.\w+)$/, "-sm$1");
+  const hasSmall = src.startsWith("/") && fs.existsSync(path.join(STATIC, small));
+  const dim = (src.startsWith("/") && imageSize(path.join(STATIC, src))) || [800, 1000];
+  const pos = { top: "50% 18%", center: "50% 45%", bottom: "50% 80%" }[a.image_position || "top"] || "50% 18%";
+  return `<img class="${o.cls || "aphoto"}" src="${esc(o.eager || !hasSmall ? src : small)}"${hasSmall ? ` srcset="${esc(small)} 480w, ${esc(src)} ${dim[0]}w" sizes="${o.sizes || "(max-width: 520px) 50vw, (max-width: 980px) 33vw, 260px"}"` : ""} width="${dim[0]}" height="${dim[1]}" alt="${esc(a.name)}" style="object-position:${pos}" ${o.eager ? 'fetchpriority="high"' : 'loading="lazy"'} decoding="async">`;
+}
+function artistCard(a, i = 0) {
+  return `<a class="acard${a.featured ? " feat" : ""}${a.image ? " hasphoto" : ""}" href="/artist-booking/${a.slug}/" style="--i:${i % 12}">${a.image ? `<span class="aframe">${artistPhoto(a)}<span class="abook" aria-hidden="true">Book now ${ARROW}</span></span>` : ""}<span class="tier">${esc(a.tier)}</span><h3>${esc(a.name)}</h3><p>${esc(a.role || a.line)}</p></a>`;
 }
 function expCard(x) {
   return `<a class="xcard hoverzoom" href="/experiences/${x.slug}/">${img(x.image, { alt: "", sizes: "(max-width: 520px) 100vw, (max-width: 980px) 50vw, 25vw" })}<span class="cat">${esc(x.category)}</span><div class="txt"><span class="where">${esc(x.when)}</span><h3>${esc(x.name)}</h3><span class="from">${esc(x.price)}</span></div></a>`;
@@ -327,7 +345,7 @@ for (const a of ARTICLES) {
     const lane = a.laneLabel;
     const others = TALENT.artists.filter((x) => x !== a && x.lane === a.lane).slice(0, 4);
     const body = `<div class="wrap"><header class="pagehead artist-head">${crumbs([["/", "Home"], ["/artist-booking/", "Artist Booking"], [p, a.name]])}
-      ${a.image ? `<figure class="aphoto-hero"><img src="${esc(a.image)}" alt="${esc(a.name)}" fetchpriority="high" decoding="async">${a.image_credit ? `<figcaption>${esc(a.image_credit)}</figcaption>` : ""}</figure>` : ""}
+      ${a.image ? `<figure class="aphoto-hero">${artistPhoto(a, { cls: "", eager: true })}${a.image_credit ? `<figcaption>Photo: ${esc(a.image_credit)}</figcaption>` : ""}</figure>` : ""}
       <span class="tier">${esc(a.featured ? a.role : lane + " · " + a.tier)}</span><h1>Book ${esc(a.name)}</h1><p class="standfirst">${esc(a.featured ? a.line : a.line)}</p>
       <p class="headcta"><a class="btn" href="#enquire">Check availability ${ARROW}</a><a class="btn ghost" href="${wa(`Hi GIST, I'd like to check availability for ${a.name}.`)}" target="_blank" rel="noopener" data-wa>WhatsApp</a></p></header>
       <section class="section tight two">
@@ -391,8 +409,11 @@ for (const sp of STATIC_PAGES) {
   const body = `<div class="wrap"><header class="pagehead">${crumbs([["/", "Home"], [sp.path, sp.title]])}<h1>${esc(sp.title)}</h1>${sp.intro ? `<p class="standfirst">${esc(sp.intro)}</p>` : ""}</header>
     <div class="section tight ${sp.form ? "contactgrid" : ""}"><div class="prose legal">${html}</div>${sp.form ? `<form class="form formbox" data-form="Contact" novalidate><input type="text" name="_honey" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
       <div class="grid2">${field("c-name", "Name", `<input id="c-name" name="name" required autocomplete="name">`)}${field("c-email", "Email", `<input id="c-email" name="email" type="email" required autocomplete="email">`)}</div>
-      ${field("c-topic", "Topic", `<select id="c-topic" name="topic" required><option value="">Choose</option><option>Story tip</option><option>Correction</option><option>Artist booking</option><option>Experiences</option><option>Advertising & partnerships</option><option>Grievance</option><option>Other</option></select>`)}
+      ${field("c-phone", "Phone / WhatsApp", `<input id="c-phone" name="phone" type="tel" autocomplete="tel" placeholder="+91">`, "Optional")}
+      ${field("c-topic", "Topic", `<select id="c-topic" name="topic" required data-other="c-topic-o"><option value="">Choose</option><option>Story tip</option><option>Correction to a story</option><option>Artist booking</option><option>Experiences</option><option>Advertising & partnerships</option><option>Formal grievance (IT Rules)</option><option>Other</option></select>`)}
+      ${otherBox("c-topic-o", "topic", "What is it about?")}
       ${field("c-msg", "Message", `<textarea id="c-msg" name="message" required minlength="10" maxlength="3000"></textarea>`)}
+      ${tsSlot}
       <div><button class="btn" type="submit">Send ${ARROW}</button></div><div class="status" role="status" aria-live="polite" hidden></div></form>` : ""}</div></div>`;
   page(sp.path, layout({ title: sp.title, description: sp.intro || sp.title, path: sp.path, body, ld: [crumbLd([["/", "Home"], [sp.path, sp.title]])] }), NOW, 0.3);
 }
