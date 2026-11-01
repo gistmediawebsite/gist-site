@@ -9,7 +9,7 @@ image: /img/lights.webp
 image_alt: A woman looks up at strings of glowing bulbs in an evening courtyard
 image_credit: "Illustrative photo: Pixabay"
 author: GIST Desk
-featured: true
+featured: false
 sources:
   - name: Pollstar (BookMyShow Live slate)
     url: https://news.pollstar.com/2026/06/18/bookmyshow-live-taps-the-chainsmokers-guns-n-roses-foo-fighters-for-major-india-tours/

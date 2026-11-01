@@ -2,14 +2,14 @@
 title: "Diljit Dosanjh's Aura India tour: seven cities, one 1.3-lakh-seat stadium, tickets from ₹999"
 description: "Delhi on 1 November, Ahmedabad's Narendra Modi Stadium on 21 November, Lucknow on 5 December. Here is every date, venue and how the tickets work."
 date: 2026-10-06T12:00:00+05:30
-updated: 2026-10-06T12:00:00+05:30
+updated: 2026-11-01T16:00:00+05:30
 section: music
 tags: [Diljit Dosanjh, Aura tour, concerts in India, Narendra Modi Stadium]
 image: /img/crowd-phone.webp
 image_alt: A concertgoer holds up a phone to film the stage through warm, blurred lights
 image_credit: "Illustrative photo: Pixabay"
 author: GIST Desk
-featured: true
+featured: false
 sources:
   - name: Business Today
     url: https://www.businesstoday.in/india/story/diljit-dosanjh-brings-aura-home-7-city-india-tour-kicks-off-in-delhi-on-nov-1-7th-show-announced-in-chandigarh-559716-2026-10-06
@@ -20,6 +20,8 @@ sources:
   - name: Gulf News
     url: https://gulfnews.com/entertainment/diljit-dosanjh-makes-history-at-wembley-announces-ahmedabad-show-1.500673522
 ---
+
+*Update, 1 November 2026: the Delhi show moved to 30 October and went ahead at Jawaharlal Nehru Stadium. [Read how the opener played out](/news/diljit-dosanjh-delhi-aura-opener/).*
 
 He announced it from the stage at Wembley. Of course he did. Diljit Dosanjh, the first Punjabi artist to headline London's Wembley Stadium, used that night in September to tell the crowd where he was going next: the Narendra Modi Stadium in Ahmedabad, on 21 November.
 

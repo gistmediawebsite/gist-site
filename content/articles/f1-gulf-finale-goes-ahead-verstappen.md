@@ -9,7 +9,7 @@ image: /img/tyres.webp
 image_alt: Black-and-white close-up of stacked racing tyres
 image_credit: "Illustrative photo: Pixabay"
 author: GIST Desk
-featured: true
+featured: false
 sources:
   - name: Al-Monitor / AFP
     url: https://al-monitor.com/originals/2026/10/qatar-and-abu-dhabi-f1-grand-prix-go-ahead-f1-boss
