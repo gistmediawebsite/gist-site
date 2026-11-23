@@ -12,6 +12,10 @@ const OUT = path.join(ROOT, "dist");
 const S = JSON.parse(fs.readFileSync(C("settings.json"), "utf8"));
 const TALENT = JSON.parse(fs.readFileSync(C("artists.json"), "utf8"));
 const ACCESS = JSON.parse(fs.readFileSync(C("experiences.json"), "utf8"));
+// Season: an experience marked status "past" moves to the greyed "Past experiences" section; calendar dates move once their end date has passed.
+const LIVE_X = ACCESS.experiences.filter((x) => x.status !== "past");
+const PAST_X = ACCESS.experiences.filter((x) => x.status === "past");
+const isPastDate = (end) => new Date(end + "T23:59:59+05:30") < new Date();
 const SITE = S.siteUrl.replace(/\/$/, "");
 const NOW = new Date();
 fs.rmSync(OUT, { recursive: true, force: true });
@@ -251,7 +255,8 @@ function artistCard(a, i = 0) {
   return `<a class="acard${a.featured ? " feat" : ""}${a.image ? " hasphoto" : ""}" href="/artist-booking/${a.slug}/" style="--i:${i % 12}">${a.image ? `<span class="aframe">${artistPhoto(a)}<span class="abook" aria-hidden="true">Book now ${ARROW}</span></span>` : ""}<span class="tier">${esc(a.tier)}</span><h3>${esc(a.name)}</h3><p>${esc(a.role || a.line)}</p></a>`;
 }
 function expCard(x) {
-  return `<a class="xcard hoverzoom" href="/experiences/${x.slug}/">${img(x.image, { alt: "", sizes: "(max-width: 520px) 100vw, (max-width: 980px) 50vw, 25vw" })}<span class="cat">${esc(x.category)}</span><div class="txt"><span class="where">${esc(x.when)}</span><h3>${esc(x.name)}</h3><span class="from">${esc(x.price)}</span></div></a>`;
+  const past = x.status === "past";
+  return `<a class="xcard hoverzoom${past ? " past" : ""}" href="/experiences/${x.slug}/">${img(x.image, { alt: "", sizes: "(max-width: 520px) 100vw, (max-width: 980px) 50vw, 33vw" })}<span class="cat">${esc(x.category)}</span>${x.badge ? `<span class="badge">${esc(x.badge)}</span>` : ""}<div class="txt"><span class="where">${esc(x.when)}</span><h3>${esc(x.name)}</h3><span class="from">${past ? "Sold out" : esc(x.price)}</span></div></a>`;
 }
 function table(t) {
   return `<div class="tbl-wrap"><table class="tbl">${t.caption ? `<caption>${esc(t.caption)}</caption>` : ""}<thead><tr>${t.head.map((h) => `<th scope="col">${esc(h)}</th>`).join("")}</tr></thead><tbody>${t.rows.map((r) => `<tr>${r.map((c, i) => i === 0 ? `<th scope="row">${esc(c)}</th>` : `<td>${esc(c)}</td>`).join("")}</tr>`).join("")}</tbody></table></div>`;
@@ -283,7 +288,7 @@ function page(p, html, lastmod, priority = 0.6) { write(p.endsWith("/") ? p + "i
   </div></section>
   <section class="section" aria-labelledby="x-h"><div class="wrap">
     <div class="sec-head"><div><h2 id="x-h">Experiences</h2><p class="intro">${esc(ACCESS.intro)}</p></div><a class="btn" href="/experiences/">The season ${ARROW}</a></div>
-    <div class="xcards">${ACCESS.experiences.slice(0, 4).map(expCard).join("")}</div>
+    <div class="xcards">${LIVE_X.slice(0, 4).map(expCard).join("")}</div>
   </div></section>
   <section class="nl" aria-labelledby="wa-h"><div class="wrap"><h2 id="wa-h">Booking an artist or an experience?</h2><div><p>Message the GIST desk on WhatsApp for availability and a quote.</p><p style="margin-top:16px"><a class="btn" href="${wa("Hi GIST, I'd like help with a booking.")}" target="_blank" rel="noopener" data-wa>WhatsApp ${esc(S.whatsappDisplay)}</a></p></div></div></section>`;
   page("/", layout({ path: "/", body, description: S.description, nav: "" , ld: [{ "@type": "WebPage", "@id": SITE + "/#home", url: SITE + "/", name: S.siteName, isPartOf: { "@id": SITE + "/#site" } }] }), ARTICLES[0]?.updated, 1.0);
@@ -363,24 +368,30 @@ for (const a of ARTICLES) {
 
 // Experiences
 (function experiences() {
-  const cal = ACCESS.calendar.map(([d, when, what, city, slug]) => `<li><a href="/experiences/${slug}/"><time datetime="${d}">${esc(when)}</time><span class="what">${esc(what)}</span><span class="city">${esc(city)}</span></a></li>`).join("");
+  const calRow = ([d, when, what, city, slug]) => `<li><a href="/experiences/${slug}/"><time datetime="${d}">${esc(when)}</time><span class="what">${esc(what)}</span><span class="city">${esc(city)}</span></a></li>`;
+  const upcoming = ACCESS.calendar.filter((r) => !isPastDate(r[5] || r[0]));
+  const gone = ACCESS.calendar.filter((r) => isPastDate(r[5] || r[0]));
+  const cal = upcoming.map(calRow).join("");
+  const calPast = gone.map((r) => calRow(r).replace("</span></a>", " · Sold out</span></a>")).join("");
   const body = `<div class="wrap"><header class="pagehead">${crumbs([["/", "Home"], ["/experiences/", "Experiences"]])}<h1>The season, 2026–27</h1><p class="standfirst">${esc(ACCESS.intro)}</p>
     <p class="headcta"><a class="btn" href="#enquire">Hold a place ${ARROW}</a><a class="btn ghost" href="${wa("Hi GIST, I'm interested in an experience.")}" target="_blank" rel="noopener" data-wa>WhatsApp the desk</a></p></header>
-    <div class="xcards five">${ACCESS.experiences.map(expCard).join("")}</div>
-    <section class="section tight" aria-labelledby="c-h"><h2 id="c-h" class="h3s">Ten months. Eleven dates.</h2><ol class="cal">${cal}</ol></section>
+    <div class="xcards three">${LIVE_X.map(expCard).join("")}</div>
+    <section class="section tight" aria-labelledby="c-h"><h2 id="c-h" class="h3s">Coming up: ${upcoming.length} dates</h2><ol class="cal">${cal}</ol></section>
+    ${PAST_X.length || gone.length ? `<section class="section tight pastx" aria-labelledby="px-h"><h2 id="px-h" class="h3s">Past experiences</h2><p class="muted">Moments from this season, all sold out.</p>${PAST_X.length ? `<div class="xcards three">${PAST_X.map(expCard).join("")}</div>` : ""}${gone.length ? `<ol class="cal past">${calPast}</ol>` : ""}</section>` : ""}
     <section class="section tight" aria-labelledby="w-h"><h2 id="w-h" class="h3s">What we arrange</h2><div class="occ">${ACCESS.arrange.map(([t, d]) => `<div><h3>${esc(t)}</h3><p>${esc(d)}</p></div>`).join("")}</div></section>
     <section class="section tight" aria-labelledby="mo-h"><h2 id="mo-h" class="h3s">Match the occasion</h2><div class="moments">${ACCESS.occasions.map(([t, s, picks]) => `<div><h3>${esc(t)}</h3><p class="muted">${esc(s)}</p><p>${esc(picks)}</p></div>`).join("")}</div></section>
     <section class="section tight" aria-labelledby="st-h"><h2 id="st-h" class="h3s">From brief to the best seat</h2>${steps(ACCESS.steps)}</section>
     <section class="section">${accessForm()}</section>
     <p class="fine">${esc(ACCESS.terms)} GIST is an independent travel and hospitality arranger and is not affiliated with the events, artists or organisers named.</p></div>`;
-  page("/experiences/", layout({ title: "F1, The Weeknd, Diljit suites, Tomorrowland & Wimbledon 2027 packages", description: "Private access to Formula 1, The Weeknd, Diljit Dosanjh private suites, Tomorrowland Thailand and Wimbledon 2027 — with stays, flights, transfers and concierge, arranged from India.", path: "/experiences/", body, nav: "experiences", waText: "Hi GIST, I'm interested in an experience.", ld: [crumbLd([["/", "Home"], ["/experiences/", "Experiences"]])] }), NOW, 0.9);
+  page("/experiences/", layout({ title: "Rafael Nadal, F1 Abu Dhabi, Tomorrowland, EDC Thailand, BTS & Wimbledon 2027 packages", description: "Private access to an evening with Rafael Nadal, the F1 Abu Dhabi finale, Tomorrowland and EDC Thailand, BTS ARIRANG in Asia and Wimbledon 2027 — with stays, flights, transfers and concierge, arranged from India.", path: "/experiences/", body, nav: "experiences", waText: "Hi GIST, I'm interested in an experience.", ld: [crumbLd([["/", "Home"], ["/experiences/", "Experiences"]])] }), NOW, 0.9);
 
   for (const x of ACCESS.experiences) {
     const p = `/experiences/${x.slug}/`;
     const tables = (x.tables || (x.table ? [x.table] : [])).map(table).join("");
-    const body = `<section class="x-hero" style="min-height:clamp(380px,48vw,600px)">${img(x.image, { eager: true, alt: "", sizes: "100vw" })}
+    const body = `<section class="x-hero" style="min-height:clamp(380px,48vw,600px)${x.focus ? `;--focus:${x.focus}` : ""}">${img(x.heroImage || x.image, { eager: true, alt: "", sizes: "100vw" })}
       <div class="wrap">${crumbs([["/", "Home"], ["/experiences/", "Experiences"], [p, x.name]])}<span class="kicker"><b>${esc(x.category)}</b> · ${esc(x.subtitle)}</span><h1 style="margin-top:14px;font-size:clamp(44px,7.4vw,110px);max-width:16ch">${esc(x.name)}</h1></div></section>
       <div class="wrap">
+      ${x.status === "past" ? `<p class="concluded"><b>Sold out.</b> This experience has taken place. Tell us if you would like first word on the next edition.</p>` : ""}
       <dl class="x-summary"><div><dt>When</dt><dd>${esc(x.when)}</dd></div><div><dt>Where</dt><dd>${esc(x.where)}</dd></div><div><dt>Best for</dt><dd>${esc(x.bestFor.join(", "))}</dd></div><div><dt>Indicative</dt><dd>${esc(x.price)}</dd></div></dl>
       <div class="e-layout" style="padding-bottom:clamp(32px,5vw,64px)">
         <div style="display:grid;gap:clamp(28px,4vw,48px)">
@@ -396,7 +407,7 @@ for (const a of ARTICLES) {
           <p class="muted" style="font-size:13px">Subject to availability. Pricing and inclusions are confirmed in writing before any payment.</p></aside>
       </div>
       <section class="section tight" style="padding-top:0">${accessForm(x.slug)}</section>
-      <section class="section" aria-labelledby="more-x"><div class="sec-head"><h2 id="more-x">More from the season</h2><a class="textlink" href="/experiences/">All experiences ${ARROW}</a></div><div class="xcards">${ACCESS.experiences.filter((e) => e !== x).slice(0, 4).map(expCard).join("")}</div></section>
+      <section class="section" aria-labelledby="more-x"><div class="sec-head"><h2 id="more-x">More from the season</h2><a class="textlink" href="/experiences/">All experiences ${ARROW}</a></div><div class="xcards">${LIVE_X.filter((e) => e !== x).slice(0, 3).map(expCard).join("")}</div></section>
       <p class="fine">${esc(ACCESS.terms)} GIST is not affiliated with the organisers, artists or rights holders named. Photography is illustrative and does not depict the event.</p></div>`;
     page(p, layout({ title: `${x.name} ${x.subtitle.split(" · ")[0]} packages from India`, description: `${x.line} ${x.when}. ${x.price}. Access, stays, transfers and concierge arranged by GIST.`, path: p, body, nav: "experiences", waText: `Hi GIST, I'm interested in ${x.name}.`, ogImage: "/img/" + x.image + ".webp", ld: [crumbLd([["/", "Home"], ["/experiences/", "Experiences"], [p, x.name]])] }), NOW, 0.8);
   }
